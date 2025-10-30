@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Native Species for Ontario Gardens | Astro Version</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green-primary: #166534;
+      --green-secondary: #16a34a;
+      --green-light: #dcfce7;
+      --green-dark: #14532d;
+      --red-primary: #dc2626;
+      --red-light: #fee2e2;
+      --blue-primary: #2563eb;
+      --gray-light: #f3f4f6;
+      --gray-text: #374151;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--gray-text);
+      background: linear-gradient(to bottom, var(--green-light), #dbeafe);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--green-primary);
+      color: var(--white);
+      padding: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--green-light);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--green-secondary), var(--blue-primary));
+      color: var(--white);
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: var(--white);
+      color: var(--green-primary);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 0;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--green-dark);
+    }
+
+    section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--green-primary);
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--green-secondary);
+    }
+
+    /* Plant Cards */
+    .plant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .plant-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      border-left: 4px solid var(--green-secondary);
+    }
+
+    .plant-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .plant-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .plant-card-content {
+      padding: 1.5rem;
+    }
+
+    .plant-card h4 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--gray-text);
+    }
+
+    .plant-card .scientific-name {
+      font-style: italic;
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .plant-card p {
+      margin-bottom: 1rem;
+      color: var(--gray-text);
+    }
+
+    .plant-card .tag {
+      display: inline-block;
+      font-size: 0.875rem;
+      color: var(--green-secondary);
+      font-weight: 600;
+    }
+
+    /* Invasive Section */
+    .invasive-section {
+      background: var(--red-light);
+    }
+
+    .invasive-section h2 {
+      color: #991b1b;
+    }
+
+    .invasive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .invasive-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border-left: 4px solid var(--red-primary);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      transition: all 0.3s;
+    }
+
+    .invasive-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .invasive-card img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .invasive-card-content {
+      padding: 1.5rem;
+      flex: 1;
+    }
+
+    .invasive-card h4 {
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+      color: var(--gray-text);
+    }
+
+    .invasive-card .scientific-name {
+      font-style: italic;
+      color: #6b7280;
+      font-size: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .invasive-card p {
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .invasive-card .alternative {
+      font-size: 0.875rem;
+      color: var(--green-secondary);
+      font-weight: 600;
+    }
+
+    /* Warning Box */
+    .warning-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .warning-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+
+    .warning-box h3 {
+      color: #991b1b;
+      margin-bottom: 1rem;
+    }
+
+    .alert-box {
+      background: var(--red-light);
+      border-left: 4px solid var(--red-primary);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .alert-box p {
+      color: #991b1b;
+      font-weight: 600;
+    }
+
+    /* Action Section */
+    .action-section {
+      background: linear-gradient(135deg, var(--blue-primary), var(--green-secondary));
+      color: var(--white);
+    }
+
+    .action-section h2 {
+      color: var(--white);
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+
+    .action-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .action-card h3 {
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .action-card ul {
+      list-style: none;
+    }
+
+    .action-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    .action-cta {
+      text-align: center;
+    }
+
+    .action-cta p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--white);
+      color: var(--green-primary);
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .version-badge {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .version-badge a {
+      color: #60a5fa;
+      text-decoration: none;
+      margin-left: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer .tagline {
+      color: var(--green-light);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      nav .links {
+        gap: 1rem;
+        font-size: 0.875rem;
+      }
+
+      .invasive-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .invasive-card {
+        flex-direction: column;
+      }
+
+      .invasive-card img {
+        width: 100%;
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Version Badge -->
+  <div class="version-badge">
+    🚀 Astro Version (CSS) | <a href="index.html">Tailwind Version</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <h1>🌱 Native Ontario Gardens</h1>
+      <div class="links">
+        <a href="#native">Native Species</a>
+        <a href="#invasive">Invasive Species</a>
+        <a href="#action">Take Action</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h2>Choose Native, Protect Ontario</h2>
+      <p>
+        Your garden choices matter. By selecting native Ontario species over invasive ones,
+        you're protecting local ecosystems, supporting wildlife, and preserving our natural heritage.
+      </p>
+      <a href="#native" class="btn">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Why Native Species Matter -->
+  <section id="native">
+    <div class="container">
+      <h2>Why Choose Native Species?</h2>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🦋</div>
+          <h3>Support Wildlife</h3>
+          <p>
+            Native plants have evolved alongside local wildlife. They provide essential food and
+            habitat for pollinators, birds, and beneficial insects that invasive species cannot.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💧</div>
+          <h3>Low Maintenance</h3>
+          <p>
+            Native species are adapted to Ontario's climate and soil conditions. They require
+            less water, fertilizer, and pesticides, saving you time and money.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌍</div>
+          <h3>Ecosystem Health</h3>
+          <p>
+            Native plants preserve biodiversity and strengthen ecosystem resilience. They prevent
+            soil erosion and improve water quality in local watersheds.
+          </p>
+        </div>
+      </div>
+
+      <!-- Native Species Examples -->
+      <div class="card" style="padding: 3rem;">
+        <h3>Beautiful Native Species for Your Ontario Garden</h3>
+
+        <div class="plant-grid">
+          <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1596436889106-be35e843f974?w=800&h=600&fit=crop" alt="Purple Coneflower">
+            <div class="plant-card-content">
+              <h4>Purple Coneflower</h4>
+              <p class="scientific-name">Echinacea purpurea</p>
+              <p>Stunning purple blooms attract butterflies and bees. Drought-tolerant and low maintenance.</p>
+              <span class="tag">Perfect for: Full sun gardens</span>
+            </div>
+          </div>
+
+          <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1626881788430-a1223086d8aa?w=800&h=600&fit=crop" alt="Wild Bergamot">
+            <div class="plant-card-content">
+              <h4>Wild Bergamot</h4>
+              <p class="scientific-name">Monarda fistulosa</p>
+              <p>Fragrant lavender flowers loved by hummingbirds. Excellent for pollinator gardens.</p>
+              <span class="tag">Perfect for: Pollinator gardens</span>
+            </div>
+          </div>
+
+          <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1592422012364-c5e1db53c2e7?w=800&h=600&fit=crop" alt="Black-Eyed Susan">
+            <div class="plant-card-content">
+              <h4>Black-Eyed Susan</h4>
+              <p class="scientific-name">Rudbeckia hirta</p>
+              <p>Cheerful yellow flowers bloom all summer. Provides seeds for goldfinches in fall.</p>
+              <span class="tag">Perfect for: Sunny borders</span>
+            </div>
+          </div>
+
+          <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1595166934570-06e6d8b4f8e7?w=800&h=600&fit=crop" alt="Canada Goldenrod">
+            <div class="plant-card-content">
+              <h4>Canada Goldenrod</h4>
+              <p class="scientific-name">Solidago canadensis</p>
+              <p>Late-season golden blooms provide crucial nectar for migrating monarchs.</p>
+              <span class="tag">Perfect for: Wildflower meadows</span>
+            </div>
+          </div>
+
+          <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1607185223374-71e5f6f189e5?w=800&h=600&fit=crop" alt="Red Osier Dogwood">
+            <div class="plant-card-content">
+              <h4>Red Osier Dogwood</h4>
+              <p class="scientific-name">Cornus sericea</p>
+              <p>Striking red stems provide winter interest. Berries feed birds year-round.</p>
+              <span class="tag">Perfect for: Shrub borders</span>
+            </div>
+          </div>
+
+          <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1525033290291-99348ebadef0?w=800&h=600&fit=crop" alt="Wild Columbine">
+            <div class="plant-card-content">
+              <h4>Wild Columbine</h4>
+              <p class="scientific-name">Aquilegia canadensis</p>
+              <p>Delicate red and yellow flowers attract hummingbirds. Thrives in shade.</p>
+              <span class="tag">Perfect for: Shaded gardens</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Invasive Species Warning -->
+  <section id="invasive" class="invasive-section">
+    <div class="container">
+      <h2>The Invasive Species Problem</h2>
+
+      <div class="warning-box">
+        <div class="warning-icon">⚠️</div>
+        <div>
+          <h3>Why Invasive Species Are Harmful</h3>
+          <p>
+            Invasive species outcompete native plants, disrupting ecosystems that took thousands
+            of years to develop. They reduce biodiversity, harm wildlife, and can cost billions
+            in environmental damage and control efforts.
+          </p>
+          <div class="alert-box">
+            <p>
+              Invasive species are one of the top threats to biodiversity in Ontario and across Canada.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Invasive Species to Avoid -->
+      <div class="card" style="padding: 3rem;">
+        <h3>Common Invasive Species to Avoid</h3>
+
+        <div class="invasive-grid">
+          <div class="invasive-card">
+            <img src="https://images.unsplash.com/photo-1595429085828-a32b72c00f54?w=400&h=300&fit=crop" alt="Purple Loosestrife">
+            <div class="invasive-card-content">
+              <h4>🚫 Purple Loosestrife</h4>
+              <p class="scientific-name">Lythrum salicaria</p>
+              <p><strong>Harmful:</strong> Forms dense stands in wetlands, choking out native plants.</p>
+              <p class="alternative">✅ Use: Cardinal Flower</p>
+            </div>
+          </div>
+
+          <div class="invasive-card">
+            <img src="https://images.unsplash.com/photo-1541271696563-3be2f555fc4e?w=400&h=300&fit=crop" alt="Norway Maple">
+            <div class="invasive-card-content">
+              <h4>🚫 Norway Maple</h4>
+              <p class="scientific-name">Acer platanoides</p>
+              <p><strong>Harmful:</strong> Creates dense shade, prevents native understory growth.</p>
+              <p class="alternative">✅ Use: Sugar Maple</p>
+            </div>
+          </div>
+
+          <div class="invasive-card">
+            <img src="https://images.unsplash.com/photo-1565027165364-01ca5f02f7ce?w=400&h=300&fit=crop" alt="Common Buckthorn">
+            <div class="invasive-card-content">
+              <h4>🚫 Common Buckthorn</h4>
+              <p class="scientific-name">Rhamnus cathartica</p>
+              <p><strong>Harmful:</strong> Forms impenetrable thickets, alters soil chemistry.</p>
+              <p class="alternative">✅ Use: Nannyberry</p>
+            </div>
+          </div>
+
+          <div class="invasive-card">
+            <img src="https://images.unsplash.com/photo-1597868165956-03a6827955b1?w=400&h=300&fit=crop" alt="Japanese Knotweed">
+            <div class="invasive-card-content">
+              <h4>🚫 Japanese Knotweed</h4>
+              <p class="scientific-name">Fallopia japonica</p>
+              <p><strong>Harmful:</strong> Extremely aggressive, damages infrastructure.</p>
+              <p class="alternative">✅ Use: Joe-Pye Weed</p>
+            </div>
+          </div>
+
+          <div class="invasive-card">
+            <img src="https://images.unsplash.com/photo-1622396636260-da36e9d97aad?w=400&h=300&fit=crop" alt="Periwinkle Vinca">
+            <div class="invasive-card-content">
+              <h4>🚫 Periwinkle/Vinca</h4>
+              <p class="scientific-name">Vinca minor</p>
+              <p><strong>Harmful:</strong> Forms dense mats, smothers native wildflowers.</p>
+              <p class="alternative">✅ Use: Wild Ginger</p>
+            </div>
+          </div>
+
+          <div class="invasive-card">
+            <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400&h=300&fit=crop" alt="Burning Bush">
+            <div class="invasive-card-content">
+              <h4>🚫 Burning Bush</h4>
+              <p class="scientific-name">Euonymus alatus</p>
+              <p><strong>Harmful:</strong> Escapes cultivation, invades forests.</p>
+              <p class="alternative">✅ Use: Maple-leaved Viburnum</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Take Action -->
+  <section id="action" class="action-section">
+    <div class="container">
+      <h2>Take Action Today</h2>
+
+      <div class="action-grid">
+        <div class="action-card">
+          <h3>🌱 For Your Garden</h3>
+          <ul>
+            <li>✓ Visit local native plant nurseries</li>
+            <li>✓ Remove invasive species from your property</li>
+            <li>✓ Never dump yard waste in natural areas</li>
+            <li>✓ Join a local naturalization project</li>
+            <li>✓ Share native seeds with neighbors</li>
+          </ul>
+        </div>
+
+        <div class="action-card">
+          <h3>📚 Learn More</h3>
+          <ul>
+            <li>✓ Ontario Native Plant Database</li>
+            <li>✓ Invasive Species Centre</li>
+            <li>✓ Ontario Invasive Plant Council</li>
+            <li>✓ Local conservation authorities</li>
+            <li>✓ Native plant societies</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="action-cta">
+        <p>
+          Every plant choice matters. Together, we can protect Ontario's natural heritage.
+        </p>
+        <div class="cta-button">
+          Start Your Native Garden Today! 🌿
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>🌱 Native Ontario Gardens - Protecting Our Ecosystem, One Garden at a Time</p>
+      <p class="tagline">
+        Choose native. Reject invasive. Preserve Ontario's biodiversity.
+      </p>
+      <p style="margin-top: 1rem; font-size: 0.875rem;">Built with Astro-style CSS • No Framework Required</p>
+    </div>
+  </footer>
+</body>
+</html>

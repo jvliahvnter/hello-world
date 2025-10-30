@@ -5,8 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Native Species for Ontario Gardens | Choose Wisely</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .version-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .version-badge a {
+            color: #60a5fa;
+            text-decoration: none;
+            margin-left: 0.5rem;
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-b from-green-50 to-blue-50">
+    <!-- Version Badge -->
+    <div class="version-badge">
+        🎨 Tailwind Version | <a href="astro.html">Astro Version</a>
+    </div>
+
     <!-- Navigation -->
     <nav class="bg-green-800 text-white shadow-lg">
         <div class="container mx-auto px-6 py-4">

@@ -1,0 +1,268 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const nativePlants = [
+  {
+    name: 'Purple Coneflower',
+    scientific: 'Echinacea purpurea',
+    description: 'Stunning purple blooms attract butterflies and bees. Drought-tolerant and low maintenance.',
+    perfectFor: 'Full sun gardens',
+    image: 'https://images.unsplash.com/photo-1596436889106-be35e843f974?w=800&h=600&fit=crop'
+  },
+  {
+    name: 'Wild Bergamot',
+    scientific: 'Monarda fistulosa',
+    description: 'Fragrant lavender flowers loved by hummingbirds. Excellent for pollinator gardens.',
+    perfectFor: 'Pollinator gardens',
+    image: 'https://images.unsplash.com/photo-1626881788430-a1223086d8aa?w=800&h=600&fit=crop'
+  },
+  {
+    name: 'Black-Eyed Susan',
+    scientific: 'Rudbeckia hirta',
+    description: 'Cheerful yellow flowers bloom all summer. Provides seeds for goldfinches in fall.',
+    perfectFor: 'Sunny borders',
+    image: 'https://images.unsplash.com/photo-1592422012364-c5e1db53c2e7?w=800&h=600&fit=crop'
+  },
+  {
+    name: 'Canada Goldenrod',
+    scientific: 'Solidago canadensis',
+    description: 'Late-season golden blooms provide crucial nectar for migrating monarchs.',
+    perfectFor: 'Wildflower meadows',
+    image: 'https://images.unsplash.com/photo-1595166934570-06e6d8b4f8e7?w=800&h=600&fit=crop'
+  },
+  {
+    name: 'Red Osier Dogwood',
+    scientific: 'Cornus sericea',
+    description: 'Striking red stems provide winter interest. Berries feed birds year-round.',
+    perfectFor: 'Shrub borders',
+    image: 'https://images.unsplash.com/photo-1607185223374-71e5f6f189e5?w=800&h=600&fit=crop'
+  },
+  {
+    name: 'Wild Columbine',
+    scientific: 'Aquilegia canadensis',
+    description: 'Delicate red and yellow flowers attract hummingbirds. Thrives in shade.',
+    perfectFor: 'Shaded gardens',
+    image: 'https://images.unsplash.com/photo-1525033290291-99348ebadef0?w=800&h=600&fit=crop'
+  }
+];
+
+const invasivePlants = [
+  {
+    name: 'Purple Loosestrife',
+    scientific: 'Lythrum salicaria',
+    harmful: 'Forms dense stands in wetlands, choking out native plants.',
+    alternative: 'Cardinal Flower',
+    image: 'https://images.unsplash.com/photo-1595429085828-a32b72c00f54?w=400&h=300&fit=crop'
+  },
+  {
+    name: 'Norway Maple',
+    scientific: 'Acer platanoides',
+    harmful: 'Creates dense shade, prevents native understory growth.',
+    alternative: 'Sugar Maple',
+    image: 'https://images.unsplash.com/photo-1541271696563-3be2f555fc4e?w=400&h=300&fit=crop'
+  },
+  {
+    name: 'Common Buckthorn',
+    scientific: 'Rhamnus cathartica',
+    harmful: 'Forms impenetrable thickets, alters soil chemistry.',
+    alternative: 'Nannyberry',
+    image: 'https://images.unsplash.com/photo-1565027165364-01ca5f02f7ce?w=400&h=300&fit=crop'
+  },
+  {
+    name: 'Japanese Knotweed',
+    scientific: 'Fallopia japonica',
+    harmful: 'Extremely aggressive, damages infrastructure.',
+    alternative: 'Joe-Pye Weed',
+    image: 'https://images.unsplash.com/photo-1597868165956-03a6827955b1?w=400&h=300&fit=crop'
+  },
+  {
+    name: 'Periwinkle/Vinca',
+    scientific: 'Vinca minor',
+    harmful: 'Forms dense mats, smothers native wildflowers.',
+    alternative: 'Wild Ginger',
+    image: 'https://images.unsplash.com/photo-1622396636260-da36e9d97aad?w=400&h=300&fit=crop'
+  },
+  {
+    name: 'Burning Bush',
+    scientific: 'Euonymus alatus',
+    harmful: 'Escapes cultivation, invades forests.',
+    alternative: 'Maple-leaved Viburnum',
+    image: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400&h=300&fit=crop'
+  }
+];
+---
+
+<Layout title="Native Species for Ontario Gardens | Astro Version">
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <h1>🌱 Native Ontario Gardens</h1>
+      <div class="links">
+        <a href="#native">Native Species</a>
+        <a href="#invasive">Invasive Species</a>
+        <a href="#action">Take Action</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h2>Choose Native, Protect Ontario</h2>
+      <p>
+        Your garden choices matter. By selecting native Ontario species over invasive ones,
+        you're protecting local ecosystems, supporting wildlife, and preserving our natural heritage.
+      </p>
+      <a href="#native" class="btn">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Why Native Species Matter -->
+  <section id="native">
+    <div class="container">
+      <h2>Why Choose Native Species?</h2>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🦋</div>
+          <h3>Support Wildlife</h3>
+          <p>
+            Native plants have evolved alongside local wildlife. They provide essential food and
+            habitat for pollinators, birds, and beneficial insects that invasive species cannot.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">💧</div>
+          <h3>Low Maintenance</h3>
+          <p>
+            Native species are adapted to Ontario's climate and soil conditions. They require
+            less water, fertilizer, and pesticides, saving you time and money.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌍</div>
+          <h3>Ecosystem Health</h3>
+          <p>
+            Native plants preserve biodiversity and strengthen ecosystem resilience. They prevent
+            soil erosion and improve water quality in local watersheds.
+          </p>
+        </div>
+      </div>
+
+      <!-- Native Species Examples -->
+      <div class="card" style="padding: 3rem;">
+        <h3>Beautiful Native Species for Your Ontario Garden</h3>
+
+        <div class="plant-grid">
+          {nativePlants.map(plant => (
+            <div class="plant-card">
+              <img src={plant.image} alt={plant.name} />
+              <div class="plant-card-content">
+                <h4>{plant.name}</h4>
+                <p class="scientific-name">{plant.scientific}</p>
+                <p>{plant.description}</p>
+                <span class="tag">Perfect for: {plant.perfectFor}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Invasive Species Warning -->
+  <section id="invasive" class="invasive-section">
+    <div class="container">
+      <h2>The Invasive Species Problem</h2>
+
+      <div class="warning-box">
+        <div class="warning-icon">⚠️</div>
+        <div>
+          <h3>Why Invasive Species Are Harmful</h3>
+          <p>
+            Invasive species outcompete native plants, disrupting ecosystems that took thousands
+            of years to develop. They reduce biodiversity, harm wildlife, and can cost billions
+            in environmental damage and control efforts.
+          </p>
+          <div class="alert-box">
+            <p>
+              Invasive species are one of the top threats to biodiversity in Ontario and across Canada.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Invasive Species to Avoid -->
+      <div class="card" style="padding: 3rem;">
+        <h3>Common Invasive Species to Avoid</h3>
+
+        <div class="invasive-grid">
+          {invasivePlants.map(plant => (
+            <div class="invasive-card">
+              <img src={plant.image} alt={plant.name} />
+              <div class="invasive-card-content">
+                <h4>🚫 {plant.name}</h4>
+                <p class="scientific-name">{plant.scientific}</p>
+                <p><strong>Harmful:</strong> {plant.harmful}</p>
+                <p class="alternative">✅ Use: {plant.alternative}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Take Action -->
+  <section id="action" class="action-section">
+    <div class="container">
+      <h2>Take Action Today</h2>
+
+      <div class="action-grid">
+        <div class="action-card">
+          <h3>🌱 For Your Garden</h3>
+          <ul>
+            <li>✓ Visit local native plant nurseries</li>
+            <li>✓ Remove invasive species from your property</li>
+            <li>✓ Never dump yard waste in natural areas</li>
+            <li>✓ Join a local naturalization project</li>
+            <li>✓ Share native seeds with neighbors</li>
+          </ul>
+        </div>
+
+        <div class="action-card">
+          <h3>📚 Learn More</h3>
+          <ul>
+            <li>✓ Ontario Native Plant Database</li>
+            <li>✓ Invasive Species Centre</li>
+            <li>✓ Ontario Invasive Plant Council</li>
+            <li>✓ Local conservation authorities</li>
+            <li>✓ Native plant societies</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="action-cta">
+        <p>
+          Every plant choice matters. Together, we can protect Ontario's natural heritage.
+        </p>
+        <div class="cta-button">
+          Start Your Native Garden Today! 🌿
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>🌱 Native Ontario Gardens - Protecting Our Ecosystem, One Garden at a Time</p>
+      <p class="tagline">
+        Choose native. Reject invasive. Preserve Ontario's biodiversity.
+      </p>
+      <p style="margin-top: 1rem; font-size: 0.875rem;">Built with Astro</p>
+    </div>
+  </footer>
+</Layout>

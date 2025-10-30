@@ -1,0 +1,427 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <style is:global>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green-primary: #166534;
+      --green-secondary: #16a34a;
+      --green-light: #dcfce7;
+      --green-dark: #14532d;
+      --red-primary: #dc2626;
+      --red-light: #fee2e2;
+      --blue-primary: #2563eb;
+      --gray-light: #f3f4f6;
+      --gray-text: #374151;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--gray-text);
+      background: linear-gradient(to bottom, var(--green-light), #dbeafe);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--green-primary);
+      color: var(--white);
+      padding: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--green-light);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--green-secondary), var(--blue-primary));
+      color: var(--white);
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: var(--white);
+      color: var(--green-primary);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 0;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--green-dark);
+    }
+
+    section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--green-primary);
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--green-secondary);
+    }
+
+    /* Plant Cards */
+    .plant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .plant-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      border-left: 4px solid var(--green-secondary);
+    }
+
+    .plant-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .plant-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .plant-card-content {
+      padding: 1.5rem;
+    }
+
+    .plant-card h4 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--gray-text);
+    }
+
+    .plant-card .scientific-name {
+      font-style: italic;
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+
+    .plant-card p {
+      margin-bottom: 1rem;
+      color: var(--gray-text);
+    }
+
+    .plant-card .tag {
+      display: inline-block;
+      font-size: 0.875rem;
+      color: var(--green-secondary);
+      font-weight: 600;
+    }
+
+    /* Invasive Section */
+    .invasive-section {
+      background: var(--red-light);
+    }
+
+    .invasive-section h2 {
+      color: #991b1b;
+    }
+
+    .invasive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .invasive-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border-left: 4px solid var(--red-primary);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      transition: all 0.3s;
+    }
+
+    .invasive-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .invasive-card img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .invasive-card-content {
+      padding: 1.5rem;
+      flex: 1;
+    }
+
+    .invasive-card h4 {
+      font-size: 1.125rem;
+      margin-bottom: 0.25rem;
+      color: var(--gray-text);
+    }
+
+    .invasive-card .scientific-name {
+      font-style: italic;
+      color: #6b7280;
+      font-size: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .invasive-card p {
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .invasive-card .alternative {
+      font-size: 0.875rem;
+      color: var(--green-secondary);
+      font-weight: 600;
+    }
+
+    /* Warning Box */
+    .warning-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .warning-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+
+    .warning-box h3 {
+      color: #991b1b;
+      margin-bottom: 1rem;
+    }
+
+    .alert-box {
+      background: var(--red-light);
+      border-left: 4px solid var(--red-primary);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .alert-box p {
+      color: #991b1b;
+      font-weight: 600;
+    }
+
+    /* Action Section */
+    .action-section {
+      background: linear-gradient(135deg, var(--blue-primary), var(--green-secondary));
+      color: var(--white);
+    }
+
+    .action-section h2 {
+      color: var(--white);
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+    }
+
+    .action-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .action-card h3 {
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .action-card ul {
+      list-style: none;
+    }
+
+    .action-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    .action-cta {
+      text-align: center;
+    }
+
+    .action-cta p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--white);
+      color: var(--green-primary);
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer .tagline {
+      color: var(--green-light);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      nav .links {
+        gap: 1rem;
+      }
+
+      .invasive-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .invasive-card {
+        flex-direction: column;
+      }
+
+      .invasive-card img {
+        width: 100%;
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <slot />
+</body>
+</html>
